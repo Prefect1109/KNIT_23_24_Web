@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список товарів</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .out-of-stock {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список товарів</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Назва товару</th>
+                <th>Ціна</th>
+                <th>Кількість на складі</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }} грн</td>
+                <td>
+                    {% if item.stock == 0 %}
+                        <span class="out-of-stock">Немає в наявності</span>
+                    {% else %}
+                        {{ item.stock }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 
